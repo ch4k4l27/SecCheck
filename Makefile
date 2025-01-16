@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
 SRC = src/main.c src/help.c src/permissions.c src/ports.c src/environment.c
 OBJ = $(SRC:.c=.o)
-TARGET = seccheck
+TARGET = seccheck.exe
 
 all: $(TARGET)
 
@@ -16,4 +16,3 @@ clean:
 	rm -f $(OBJ) $(TARGET)
 
 .PHONY: all clean
-
