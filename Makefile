@@ -2,10 +2,13 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
 SRC = src/main.c src/help.c src/permissions.c src/ports.c src/environment.c
 OBJ = $(SRC:.c=.o)
-TARGET = seccheck.exe
+TARGET = seccheck
 
 all: $(TARGET)
 
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET).exe
+	
 $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
 
