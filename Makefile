@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
-SRC = ./main.c ./help.h ./permissions.h ./scan_open_ports.h ./check_environment.h
+SRC = src/main.c src/help.c src/permissions.c src/ports.c src/environment.c
 OBJ = $(SRC:.c=.o)
 TARGET = seccheck
 

@@ -8,9 +8,10 @@ void check_environment() {
 
     // Lista de variáveis de ambiente sensíveis
     const char *sensitive_vars[] = {"AWS_SECRET_ACCESS_KEY", "DB_PASSWORD", "SECRET_KEY"};
+    size_t num_vars = sizeof(sensitive_vars) / sizeof(sensitive_vars[0]);
     int found = 0;
 
-    for (int i = 0; i < sizeof(sensitive_vars) / sizeof(sensitive_vars[0]); i++) {
+    for (int i = 0; i < num_vars; i++) {
         // Verificando se a variável de ambiente está definida
         if (getenv(sensitive_vars[i]) != NULL) {
             printf("  [!] Variável sensível encontrada: %s\n", sensitive_vars[i]);

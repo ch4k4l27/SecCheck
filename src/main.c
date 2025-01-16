@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 
 #include "help.h"
 #include "permissions.h"
-#include "scan_open_ports.h"
-#include "check_environment.h"
+#include "ports.h"
+#include "environment.h"
 
 // Função para imprimir "SecCheck" com caracteres
 void print_sec_check_logo() {
