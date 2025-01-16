@@ -2,6 +2,9 @@
 
 void display_help(){
   printf("Autor: João Gustavo 'Ch4k4l' Bispo");
+  #ifdef _WIN32
+  printf("Windows...");
+  #endif /* ifdef _WIN32 */
   printf("Cada um usa do modo que achar melhor");
   printf("Uso: ./seccheck [opções]\n\n");
   printf("Opções:\n");

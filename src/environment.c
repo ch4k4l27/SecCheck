@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifdef  __linux__
 // Função para verificar variáveis de ambiente sensíveis
-void check_environment() {
+void check_environment_linux() {
     printf("\n[*]Verificando variáveis de ambiente sensíveis...\n");
 
     // Lista de variáveis de ambiente sensíveis
@@ -24,3 +25,4 @@ void check_environment() {
         printf("  [✓] Nenhuma variável sensível encontrada.\n");
     }
 }
+#endif 
