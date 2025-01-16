@@ -1,12 +1,12 @@
 #include <stdio.h>
 
 void display_help(){
-  printf("SecCheck - Verificador de Segurança Local");
+  printf("Autor: João Gustavo 'Ch4k4l' Bispo");
+  printf("Cada um usa do modo que achar melhor");
   printf("Uso: ./seccheck [opções]\n\n");
   printf("Opções:\n");
-  printf("  --help          Mostra esta página de ajuda.\n");
-  printf("\nFuncionalidades:\n");
-  printf("  - Verificação de permissões inseguras em arquivos críticos.\n");
-  printf("  - Escaneamento de portas abertas no localhost.\n");
-  printf("  - Verificação de variáveis de ambiente sensíveis.\n\n");
+  printf("  -h, --help      Mostra esta página de ajuda.\n");
+  printf("  -f, --file      Mostra os arquivos com permissões erradas.\n");
+  printf("  -p, --port      Mostra se tem portas abertas no localhost.\n");
+  printf("  -e, --env       Mostra se tem variáveis de ambiente sensiveis.\n");
 }

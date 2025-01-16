@@ -27,11 +27,11 @@ void scan_open_ports() {
 
         // Tenta conectar à porta
         if (connect(sock, (struct sockaddr *)&addr, sizeof(addr)) == 0) {
-            printf("  [⚠️] Porta aberta: %d\n", port);
+            printf("  [!] Porta aberta: %d\n", port);
         }
 
         close(sock);
     }
     
-    printf("✅ Escaneamento concluído.\n");
+    printf("  [✓] Escaneamento concluído.\n");
 }
