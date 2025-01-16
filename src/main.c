@@ -1,10 +1,12 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
 #include "help.h"
 #include "permissions.h"
 #include "ports.h"
 #include "environment.h"
+
+#define PAUSE getchar();
 
 // Função para imprimir "SecCheck" com caracteres
 void print_sec_check_logo() {
@@ -18,69 +20,46 @@ void print_sec_check_logo() {
   printf("Use com conciência\n\n");
 }
 
-// Função para exibir o help
-void handle_flags(int argc, char *argv[]) {
-  // Se o usuário passar a flag de ajuda, exibe o help
-  if (argc > 1 && strcmp(argv[1], "--help") == 0) {
-    display_help();
-    return;
-  }
+void display_menu(){
+  printf("1 - Verificar permissões dos arquivos\n");
+  printf("2 - Verificar portas locais abertas\n");
+  printf("3 - Verificar variáveis de ambiente\n");
+  printf("0 - Sair\n");
+}
+void menu() {
+  int opcao;
 
-  // Flags de verificação de permissões, portas e variáveis de ambiente
-  int check_permissions_flag = 0;
-  int scan_ports_flag = 0;
-  int check_environment_flag = 0;
-  int check_windows_flag = 0;
-
-  for (int i = 1; i < argc; i++) {
-    if (strcmp(argv[i], "-f") == 0 || strcmp(argv[i], "--file") == 0) {
-      check_permissions_flag = 1;
+  do {
+    print_sec_check_logo();
+    printf("\nSecCheck - Verificador de Segurança Local\n");
+    printf("Escolha uma opção:\n");
+    display_menu();
+    printf("> ");
+    scanf("%d", &opcao);
+    switch (opcao) {
+      case 1:
+        check_permissions_linux();
+        break;
+      case 2:
+        scan_open_ports();
+        break;
+      case 3:
+        check_environment_linux();
+        break;
+      case 0:
+        printf("Saindo...\n");
+        break;
+      default:
+        printf("Opção inválida. Digite um número entre 0 e 3.\n");
     }
-    else if (strcmp(argv[i], "-p") == 0 || strcmp(argv[i], "--port") == 0) {
-      scan_ports_flag = 1;
-    }
-    else if (strcmp(argv[i], "-e") == 0 || strcmp(argv[i], "--env") == 0) {
-      check_environment_flag = 1;
-    }
-    else if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--hel´p") == 0) {
-      display_help();
-      return;
-    }
-  }
-
-  // Chamando as funções de acordo com as flags
-#ifdef __linux__
-  if (check_permissions_flag) {
-    check_permissions_linux();
-  }
-  if (check_environment_flag) {
-    check_environment_linux();
-  }
-#endif 
-
-#ifdef _WIN32
-  if (check_permissions_flag) {
-    check_permissions_windows();
-  }
-#endif
-
-  if (scan_ports_flag) {
-    scan_open_ports();
-  }
-  if (!check_permissions_flag && !scan_ports_flag && !check_environment_flag) {
-    printf("\n[!] Nenhuma opção válida fornecida. Tente --help para mais informações.\n");
-  }
+    PAUSE;
+  } while (opcao != 0);
 }
 
-int main(int argc, char *argv[]) {
-  // Imprime o logo do SecCheck
+int main() {
   print_sec_check_logo();
-
   printf("SecCheck - Verificador de Segurança Local\n");
-
-  // Verifica as flags passadas para o programa
-  handle_flags(argc, argv);
-
+  menu();
   return 0;
 }
 
